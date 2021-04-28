@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import clsx from "clsx";
+import "./AppStyle.ts";
+import { Button, IconButton, Toolbar, Typography } from "@material-ui/core";
+import ResponsiveDrawer from "./Components/Drawer";
+import MenuIcon from "@material-ui/icons/Menu";
+import Styles from "./AppStyle";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [open, setOpen] = useState(false);
+	const classes = Styles();
+
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
+
+	return (
+		<div className="App">
+			<Toolbar>
+				<IconButton
+					color="inherit"
+					aria-label="open drawer"
+					onClick={handleDrawerOpen}
+					edge="start"
+					className={clsx(classes.menuButton, open && classes.hide)}
+				>
+					<MenuIcon />
+				</IconButton>
+				<Typography variant="h6" noWrap>
+					Go By Example
+				</Typography>
+			</Toolbar>
+			<ResponsiveDrawer onClose={handleDrawerClose} status={open} />
+		</div>
+	);
 }
 
 export default App;
