@@ -9,6 +9,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import Styles from "./style";
 import { Drawer, Hidden, Typography, useTheme } from "@material-ui/core";
 import { IProps } from "./interfaces";
+import Content from "../Content";
 
 function ResponsiveDrawer(props: IProps) {
 	const theme = useTheme();
@@ -81,6 +82,8 @@ function ResponsiveDrawer(props: IProps) {
 			</nav>
 			<main className={classes.content}>
 				<div className={classes.toolbar} />
+
+				<Content />
 			</main>
 		</div>
 	);
