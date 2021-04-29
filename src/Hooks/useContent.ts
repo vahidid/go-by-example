@@ -10,24 +10,34 @@ function useContent(contentKey: string) {
 	useEffect(() => {
 		// Get MDContent from file
 		async function getContentFromFile() {
-			// Read File
-			const file = await import(`./../Contents/${contentKey}`);
+			try {
+				// Read File
+				const file = await import(`./../Contents/${contentKey}`);
 
-			// Get MDContent
-			fetch(file.default.mdContent)
-				.then((result) => {
-					result.text().then((plaintext) => {
-						setContent(plaintext);
+				// Get MDContent
+				fetch(file.default.mdContent)
+					.then((result) => {
+						result.text().then((plaintext) => {
+							setContent(plaintext);
+						});
+					})
+					.catch((error) => {
+						throw error;
 					});
-				})
-				.catch((error) => {
-					throw error;
-				});
 
-			setTitle(file.default.title);
-			setCode(file.default.code);
-			setPrevRef(file.default.prevRef);
-			setNextRef(file.default.nextRef);
+				setTitle(file.default.title);
+				setCode(file.default.code);
+				setPrevRef(file.default.prevRef);
+				setNextRef(file.default.nextRef);
+			} catch (e) {
+				setTitle("Not Found");
+				setContent(
+					"There is no content on this link, try a content from sidebar"
+				);
+				setCode(null);
+				setPrevRef(null);
+				setNextRef(null);
+			}
 		}
 
 		getContentFromFile();
