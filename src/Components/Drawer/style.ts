@@ -31,6 +31,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: "flex",
 			justifyContent: "center",
 			alignItems: "center",
+			color: theme.palette.grey[50],
+			flexDirection: "column",
 		},
 		drawerPaper: {
 			width: drawerWidth,
@@ -39,6 +41,9 @@ const useStyles = makeStyles((theme: Theme) =>
 		content: {
 			flexGrow: 1,
 			padding: theme.spacing(3),
+		},
+		linkItems: {
+			color: "#fff",
 		},
 	})
 );

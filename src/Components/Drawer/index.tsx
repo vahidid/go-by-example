@@ -23,6 +23,7 @@ function ResponsiveDrawer(props: IProps) {
 	const drawerCointainer = (
 		<div>
 			<div className={classes.toolbar}>
+				<img src="/img/go-logo.svg" alt="logo" />
 				<Typography variant="h6" noWrap>
 					Go By Example
 				</Typography>{" "}
@@ -31,7 +32,11 @@ function ResponsiveDrawer(props: IProps) {
 			<List>
 				{Object.entries(contentsArray).map(([key, value]) => (
 					<ListItemLink key={key} href={`/${key}`}>
-						<ListItemText primary={value.en} secondary={value.fa} />
+						<ListItemText
+							className={classes.linkItems}
+							primary={value.en}
+							secondary={value.fa}
+						/>
 					</ListItemLink>
 				))}
 			</List>
