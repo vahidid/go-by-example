@@ -49,9 +49,11 @@ function Content() {
 						</Typography>
 					</Grid>
 					<Grid item xs={12} sm={6} lg={5}>
-						<SyntaxHighlighter language="go" style={darcula}>
-							{content.code ? content.code : "There is no code"}
-						</SyntaxHighlighter>
+						{content.code ? (
+							<SyntaxHighlighter language="go" style={darcula}>
+								{content.code}
+							</SyntaxHighlighter>
+						) : null}
 					</Grid>
 				</Grid>
 			</Container>
