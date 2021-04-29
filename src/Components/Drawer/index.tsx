@@ -1,4 +1,4 @@
-import React, { Props } from "react";
+import React, { Props, useEffect } from "react";
 import Divider from "@material-ui/core/Divider";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
@@ -10,11 +10,15 @@ import Styles from "./style";
 import { Drawer, Hidden, Typography, useTheme } from "@material-ui/core";
 import { IProps } from "./interfaces";
 import Content from "../Content";
+import contents from "../../Contents/contents";
+import ListItemLink from "../ListItemLink";
 
 function ResponsiveDrawer(props: IProps) {
 	const theme = useTheme();
 
 	const classes = Styles();
+
+	const contentsArray = contents;
 
 	const drawerCointainer = (
 		<div>
@@ -25,24 +29,10 @@ function ResponsiveDrawer(props: IProps) {
 			</div>
 			<Divider />
 			<List>
-				{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>
-							{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-						</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
-			<Divider />
-			<List>
-				{["All mail", "Trash", "Spam"].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>
-							{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-						</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
+				{Object.entries(contentsArray).map(([key, value]) => (
+					<ListItemLink key={key} href={`/${key}`}>
+						<ListItemText primary={value.en} secondary={value.fa} />
+					</ListItemLink>
 				))}
 			</List>
 		</div>
