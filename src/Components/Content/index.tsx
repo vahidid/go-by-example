@@ -1,10 +1,20 @@
 import { Container, CssBaseline, Grid, Typography } from "@material-ui/core";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco, darcula } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { useHistory } from "react-router-dom";
+import Camalize from "../../Utils/Camalize";
+import { useContent } from "../../Hooks/useContent";
 
 function Content() {
+	const history = useHistory();
+	const getContent = useContent(Camalize(history.location.pathname));
+
+	// useEffect(() => {
+	// 	console.log(getContent);
+	// }, [getContent]);
+
 	const code = `package main
 
     import "fmt"
@@ -40,15 +50,19 @@ function Content() {
 					alignItems="flex-start"
 				>
 					<Grid item xs={12} sm={6} lg={5}>
-						<Typography variant="h4">Functions</Typography>
+						<Typography variant="h4">
+							{getContent.title.length ? getContent.title : "Not Found"}
+						</Typography>
 
 						<Typography variant="body1">
-							<ReactMarkdown># Hello, *world*!</ReactMarkdown>
+							<ReactMarkdown>
+								{getContent.content.length ? getContent.content : "Not Found"}
+							</ReactMarkdown>
 						</Typography>
 					</Grid>
 					<Grid item xs={12} sm={6} lg={5}>
 						<SyntaxHighlighter language="go" style={darcula}>
-							{code}
+							{getContent.code ? getContent.code : "There is no code"}
 						</SyntaxHighlighter>
 					</Grid>
 				</Grid>

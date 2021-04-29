@@ -46,6 +46,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-syntax-highlighter": "^13.5.0"
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-syntax-highlighter": "^13.5.0",
+    "ts-loader": "^9.1.1"
   }
 }

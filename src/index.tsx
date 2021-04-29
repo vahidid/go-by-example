@@ -5,12 +5,15 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./Theme";
 import { CssBaseline } from "@material-ui/core";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-	<ThemeProvider theme={theme}>
-		<CssBaseline />
-		<App />
-	</ThemeProvider>,
+	<BrowserRouter>
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<App />
+		</ThemeProvider>
+	</BrowserRouter>,
 	document.getElementById("root")
 );
 
